@@ -8,5 +8,9 @@ export const defaultTheme = {
       main: '#5061FC',
       dark: '#3346F0',
     },
+    gray: {
+      200: '#BCBCBC',
+      900: '#222222',
+    },
   },
 };
