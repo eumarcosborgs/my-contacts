@@ -30,6 +30,7 @@
     "import/no-named-as-default-member": "off",
     "indent": ["error", 2],
     "no-unsafe-optional-chaining": "off",
-    "no-nonoctal-decimal-escape": "off"
+    "no-nonoctal-decimal-escape": "off",
+    "jsx-a11y/alt-text": "off"
   }
 }
