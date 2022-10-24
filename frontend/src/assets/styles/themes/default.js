@@ -9,6 +9,7 @@ export const defaultTheme = {
       dark: '#3346F0',
     },
     gray: {
+      100: '#E5E5E5',
       200: '#BCBCBC',
       900: '#222222',
     },
@@ -16,6 +17,9 @@ export const defaultTheme = {
       light: '#F97171',
       main: '#FC5050',
       dark: '#F63131',
+    },
+    success: {
+      main: '#51CA73',
     },
   },
 };

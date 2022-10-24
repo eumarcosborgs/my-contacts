@@ -6,6 +6,7 @@ export const Container = styled.div`
   a {
     display: flex;
     align-items: center;
+    width: min-content;
 
     text-decoration: none;
 
