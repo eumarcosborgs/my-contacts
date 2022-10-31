@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
 
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ export const Container = styled.div`
   border-radius: 4px;
   padding: 1.5rem;
 
-  h1 {
+  > h1 {
     font-size: 1.375rem;
     color: ${({ theme, danger }) => (
     danger ? theme.colors.danger.main : theme.colors.gray[900]
@@ -34,6 +34,10 @@ export const Container = styled.div`
 
   p {
     margin-top: 0.5rem
+  }
+
+  .modal-body {
+    margin-top: 2rem;
   }
 `;
 
@@ -44,9 +48,13 @@ export const Footer = styled.div`
   margin-top: 2rem;
 
   .cancel-button {
-    margin-right: 0.5rem;
+    margin-right: 1.5rem;
     background: transparent;
     border: none;
     color: ${({ theme }) => theme.colors.gray[200]};
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `;

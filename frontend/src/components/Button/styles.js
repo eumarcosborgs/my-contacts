@@ -27,7 +27,7 @@ export const StyledButton = styled.button`
   }
 
   &:disabled {
-    background: #ccc;
+    background: #ccc !important;
     cursor: default;
   }
 

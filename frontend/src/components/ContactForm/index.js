@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import {
+  useEffect, useState, forwardRef, useImperativeHandle,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { isEmailValid } from '../../utils/isEmailValid';
@@ -13,7 +15,7 @@ import { Button } from '../Button';
 
 import { Form, ButtonContainer } from './styles';
 
-export function ContactForm({ buttonLabel, onSubmit }) {
+export const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -27,6 +29,21 @@ export function ContactForm({ buttonLabel, onSubmit }) {
   } = useErrors();
 
   const isFormValid = (name && errors.length === 0);
+
+  useImperativeHandle(ref, () => ({
+    setFieldsValues: (contact) => {
+      setName(contact.name ?? '');
+      setEmail(contact.email ?? '');
+      setPhone(formatPhone(contact.phone) ?? '');
+      setCategoryId(contact.category_id ?? '');
+    },
+    resetFields() {
+      setName('');
+      setEmail('');
+      setPhone('');
+      setCategoryId('');
+    },
+  }), []);
 
   useEffect(() => {
     async function loadCategories() {
@@ -62,7 +79,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
     }
   }
 
-  function handlePhone(event) {
+  function handlePhoneChange(event) {
     setPhone(formatPhone(event.target.value));
   }
 
@@ -76,10 +93,6 @@ export function ContactForm({ buttonLabel, onSubmit }) {
     });
 
     setIsSubmitting(false);
-    setName('');
-    setEmail('');
-    setPhone('');
-    setCategoryId('');
   }
 
   return (
@@ -108,7 +121,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
         <Input
           placeholder="Telefone"
           value={phone}
-          onChange={handlePhone}
+          onChange={handlePhoneChange}
           maxLength={15}
           disabled={isSubmitting}
         />
@@ -144,7 +157,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
       </ButtonContainer>
     </Form>
   );
-}
+});
 
 ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
