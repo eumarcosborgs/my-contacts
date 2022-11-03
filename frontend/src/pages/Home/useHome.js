@@ -30,6 +30,7 @@ export function useHome() {
       setContacts(contactsList);
     } catch {
       setHasError(true);
+      setContacts([]);
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +63,6 @@ export function useHome() {
 
   function handleCloseDeleteContactModal() {
     setIsModalVisible(false);
-    setContactBeingDeleted(null);
   }
 
   async function handleConfirmDeleteContact() {
