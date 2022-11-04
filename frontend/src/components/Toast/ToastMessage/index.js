@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { useToastMessage } from './useToastMessage';
@@ -7,7 +8,7 @@ import checkCircleIcon from '../../../assets/images/icons/check-circle.svg';
 
 import { Container } from './styles';
 
-export function ToastMessage({
+function ToastMessageComponent({
   message, onRemoveMessage, isLeaving, animatedRef,
 }) {
   const {
@@ -33,7 +34,7 @@ export function ToastMessage({
   );
 }
 
-ToastMessage.propTypes = {
+ToastMessageComponent.propTypes = {
   message: PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
@@ -44,3 +45,7 @@ ToastMessage.propTypes = {
   isLeaving: PropTypes.bool.isRequired,
   animatedRef: PropTypes.shape().isRequired,
 };
+
+const ToastMessage = memo(ToastMessageComponent);
+
+export { ToastMessage };
